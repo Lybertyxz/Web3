@@ -1,3 +1,5 @@
+import { Post } from "./types";
+
 const BASE_URL = "http://localhost:8080";
 
 async function fetchAPI(path: string) {
@@ -9,7 +11,7 @@ async function fetchAPI(path: string) {
 export const apiService = {
   listPosts: () => fetchAPI("/posts"),
   getPost: (id: string) => fetchAPI(`/posts/${id}`),
-  createPost: (post: any) =>
+  createPost: (post: Post) =>
     fetch(`${BASE_URL}/posts`, {
       method: "POST",
       headers: {
