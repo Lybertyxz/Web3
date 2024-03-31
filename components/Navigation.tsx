@@ -17,7 +17,7 @@ const Navigation: React.FC = () => {
           transition={{ duration: 0.2 }}
           className="m-5 cursor-pointer border-b border-gray-700 hover:text-gray-300"
         >
-          <Link href="/create-post">Create Post</Link>
+          <Link href="/posts/create">Create Post</Link>
         </motion.div>
         <motion.div
           whileHover={{ scale: 1.05 }} // Zoom in slightly on hover
