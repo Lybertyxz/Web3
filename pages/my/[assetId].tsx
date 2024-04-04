@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { apiService } from "../../../utils/api";
-import { Asset } from "../../../utils/types";
+import { apiService } from "../../utils/api";
+import { Asset } from "../../utils/types";
 
 function MyAssetPage() {
   const router = useRouter();
