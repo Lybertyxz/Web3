@@ -11,7 +11,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center ">
+    <div className="flex min-h-screen items-center justify-center">
       <div className="max-w-sm rounded-lg bg-white p-8 shadow-md">
         <form onSubmit={handleSubmit}>
           <div className="mb-4">

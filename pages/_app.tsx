@@ -1,11 +1,17 @@
 import type { AppProps } from "next/app";
 import "../styles/index.css";
 import Layout from "../components/Layout";
+import { AnimatePresence } from "framer-motion";
+import PageTransition from "../components/framer/PageTransition";
 
-export default function MyApp({ Component, pageProps }: AppProps) {
+export default function MyApp({ Component, pageProps, router }: AppProps) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <AnimatePresence>
+      <PageTransition key={router.route}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </PageTransition>
+    </AnimatePresence>
   );
 }
