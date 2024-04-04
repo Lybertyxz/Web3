@@ -11,12 +11,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const router = useRouter();
   const isAuthenticated = true; // Implement your authentication logic here
 
-  // Specify paths that do not require authentication
   const publicPaths = ["/", "/login", "/register"];
 
   const showNav = !publicPaths.includes(router.pathname);
 
-  // Redirect logic for unauthenticated access to protected pages
   useEffect(() => {
     if (!publicPaths.includes(router.pathname) && !isAuthenticated) {
       router.push("/");

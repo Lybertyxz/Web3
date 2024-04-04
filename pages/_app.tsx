@@ -7,11 +7,11 @@ import PageTransition from "../components/framer/PageTransition";
 export default function MyApp({ Component, pageProps, router }: AppProps) {
   return (
     <AnimatePresence>
-      <PageTransition key={router.route}>
-        <Layout>
+      <Layout>
+        <PageTransition key={router.route}>
           <Component {...pageProps} />
-        </Layout>
-      </PageTransition>
+        </PageTransition>
+      </Layout>
     </AnimatePresence>
   );
 }

@@ -23,5 +23,6 @@ export const apiService = {
         body: JSON.stringify(asset),
       }),
   },
-  users: {},
+  account: {}, // "/account", "account/udpate", "/account/delete", "/account/settings"
+  auth: {}, // "/login", "/register"
 };
