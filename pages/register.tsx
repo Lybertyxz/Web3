@@ -17,14 +17,11 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center ">
-      <div className="max-w-md rounded-lg bg-white p-8 shadow-md">
+    <div className="flex min-h-screen items-center justify-center">
+      <div className="max-w-md rounded-lg bg-white p-8 text-black shadow-md">
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label
-              htmlFor="name"
-              className="block text-sm font-medium text-gray-700"
-            >
+            <label htmlFor="name" className="block text-sm font-medium ">
               Nom
             </label>
             <input
@@ -37,10 +34,7 @@ const RegisterPage = () => {
             />
           </div>
           <div className="mb-4">
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-700"
-            >
+            <label htmlFor="email" className="block text-sm font-medium ">
               Email
             </label>
             <input
@@ -53,10 +47,7 @@ const RegisterPage = () => {
             />
           </div>
           <div className="mb-4">
-            <label
-              htmlFor="password"
-              className="block text-sm font-medium text-gray-700"
-            >
+            <label htmlFor="password" className="block text-sm font-medium ">
               Password
             </label>
             <input
@@ -71,7 +62,7 @@ const RegisterPage = () => {
           <div className="mb-6">
             <label
               htmlFor="confirm-password"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium "
             >
               Confirm password
             </label>

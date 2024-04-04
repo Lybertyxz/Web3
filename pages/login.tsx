@@ -12,13 +12,10 @@ const LoginPage = () => {
 
   return (
     <div className="flex min-h-screen items-center justify-center">
-      <div className="max-w-sm rounded-lg bg-white p-8 shadow-md">
+      <div className="max-w-sm rounded-lg bg-white p-8 text-black shadow-md">
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-700"
-            >
+            <label htmlFor="email" className="block text-sm font-medium ">
               Email
             </label>
             <input
@@ -31,10 +28,7 @@ const LoginPage = () => {
             />
           </div>
           <div className="mb-6">
-            <label
-              htmlFor="password"
-              className="block text-sm font-medium text-gray-700"
-            >
+            <label htmlFor="password" className="block text-sm font-medium ">
               Password
             </label>
             <input
