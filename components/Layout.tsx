@@ -1,4 +1,3 @@
-// components/Layout.tsx
 import { useRouter } from "next/router";
 import { useEffect, ReactNode } from "react";
 import Navigation from "./Navigation";

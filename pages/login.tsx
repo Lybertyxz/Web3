@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useState } from "react";
+import DiamondComponent from "../components/framer/DiamondShape";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -11,8 +12,9 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center">
-      <div className="max-w-sm rounded-lg bg-white p-8 text-black shadow-md">
+    <div className="flex min-h-screen items-center justify-center font-mono">
+      <DiamondComponent>
+        <h2 className="mb-6 text-center text-2xl font-semibold">Sign In.</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label htmlFor="email" className="block text-sm font-medium ">
@@ -23,7 +25,7 @@ const LoginPage = () => {
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 w-full rounded-md border border-gray-300 p-2 shadow-sm"
+              className="mt-1 w-full rounded-md border-transparent bg-gray-700 p-2 text-white placeholder-gray-400 shadow-sm focus:border-blue-500 focus:ring-blue-500"
               required
             />
           </div>
@@ -36,26 +38,26 @@ const LoginPage = () => {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="mt-1 w-full rounded-md border border-gray-300 p-2 shadow-sm"
+              className="mt-1 w-full rounded-md border-transparent bg-gray-700 p-2 text-white placeholder-gray-400 shadow-sm focus:border-blue-500 focus:ring-blue-500"
               required
             />
           </div>
           <div className="flex items-center justify-between">
             <button
               type="submit"
-              className="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+              className="rounded-md text-blue-400 hover:text-blue-300"
             >
               Sign In
             </button>
             <Link
-              className="text-sm text-blue-600 hover:underline"
+              className="text-sm text-blue-400 hover:text-blue-300"
               href="/register"
             >
               Create account
             </Link>
           </div>
         </form>
-      </div>
+      </DiamondComponent>
     </div>
   );
 };

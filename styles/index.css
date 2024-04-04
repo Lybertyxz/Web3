@@ -3,12 +3,39 @@
 @tailwind utilities;
 
 @keyframes bg-change {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
   
-  .animate-bg-change {
-    animation: bg-change 15s ease infinite;
-    background-size: 200% 200%;
-  }
+.animate-bg-change {
+  animation: bg-change 10s ease infinite;
+  background-size: 200% 200%;
+}
+
+.diamond-container {
+  position: relative;
+  width: calc(100vw / 4); /* Exemple de largeur basée sur la largeur de l'écran */
+  padding-top: calc(100vw / 4); /* Garde la forme carrée qui sera tournée pour faire un losange */
+}
+
+.diamond-shape {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #3498db, #9b59b6);
+  animation: bg-change 15s ease infinite;
+  background-size: 200% 200%;
+  transform: rotate(45deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.diamond-content {
+  transform: rotate(-45deg);
+  text-align: center;
+  color: white;
+}

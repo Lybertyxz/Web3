@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-// components/Header.jsx
 const Header = () => {
   return (
     <div className="flex items-center justify-between bg-black p-4 text-white">
