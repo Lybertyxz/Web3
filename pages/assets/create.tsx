@@ -1,35 +1,35 @@
 import { FormEvent, useState } from "react";
 import { apiService } from "../../utils/api";
-import { Post } from "../../utils/types";
+import { Asset } from "../../utils/types";
 
-function CreatePost() {
-  const [post, setPost] = useState<Post>({ title: "", desc: "" });
+function CreateAssetPage() {
+  const [asset, setAsset] = useState<Asset>({ title: "", desc: "" });
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    await apiService.createPost(post);
+    await apiService.assets.createAsset(asset);
   };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4 ">
       <input
         type="text"
-        value={post.title}
-        onChange={(e) => setPost({ ...post, title: e.target.value })}
+        value={asset.title}
+        onChange={(e) => setAsset({ ...asset, title: e.target.value })}
         placeholder="Title"
         className="input-class text-black"
       />
       <textarea
-        value={post.desc}
-        onChange={(e) => setPost({ ...post, desc: e.target.value })}
+        value={asset.desc}
+        onChange={(e) => setAsset({ ...asset, desc: e.target.value })}
         placeholder="Description"
         className="textarea-class text-black"
       />
       <button type="submit" className="button-class">
-        Create Post
+        Create Asset
       </button>
     </form>
   );
 }
 
-export default CreatePost;
+export default CreateAssetPage;

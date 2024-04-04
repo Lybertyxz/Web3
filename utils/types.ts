@@ -1,4 +1,4 @@
-export interface Post {
+export interface Asset {
   ID?: number;
   title: string;
   desc: string;

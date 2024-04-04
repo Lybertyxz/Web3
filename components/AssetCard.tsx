@@ -1,14 +1,14 @@
-interface PostCardProps {
+interface AssetCardProps {
   id: string;
   title: string;
   desc: string;
 }
 
-const PostCard: React.FC<PostCardProps> = ({ id, title, desc }) => {
+const AssetCard: React.FC<AssetCardProps> = ({ id, title, desc }) => {
   return (
     <div>
       <a
-        href={"/posts/" + id}
+        href={"/assets/" + id}
         className="block max-w-sm rounded-lg border border-gray-200 bg-white p-6 shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
       >
         <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -20,4 +20,4 @@ const PostCard: React.FC<PostCardProps> = ({ id, title, desc }) => {
   );
 };
 
-export default PostCard;
+export default AssetCard;

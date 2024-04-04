@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { apiService } from "../../utils/api";
-import PostCard from "../../components/PostCard";
-import { Post } from "../../utils/types";
+import { apiService } from "../../../utils/api";
+import AssetCard from "../../../components/AssetCard";
+import { Asset } from "../../../utils/types";
 
-// const postData: Post[] = [
+// const assetData: Asset[] = [
 //   {
 //     title: "titre",
 //     desc: "description",
@@ -26,16 +26,16 @@ import { Post } from "../../utils/types";
 //   },
 // ];
 
-const PostsPage = () => {
-  const [posts, setPosts] = useState<Post[]>([]);
+const MyAssetsPage = () => {
+  const [assets, setAssets] = useState<Asset[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const fetchedPosts = await apiService.listPosts();
-        setPosts(fetchedPosts);
+        const fetchedAssets = await apiService.assets.getMyAssets();
+        setAssets(fetchedAssets);
       } catch (error) {
-        console.error("Error fetching posts:", error.message);
+        console.error("Error fetching assets:", error.message);
       }
     };
 
@@ -44,25 +44,25 @@ const PostsPage = () => {
 
   return (
     <div>
-      {posts.length > 0 ? (
+      {assets.length > 0 ? (
         <div className="grid gap-3 p-4">
-          {posts.map((post) => (
-            <div key={post.ID}>
-              <PostCard
-                id={post.ID.toString()}
-                title={post.title}
-                desc={post.desc}
+          {assets.map((asset) => (
+            <div key={asset.ID}>
+              <AssetCard
+                id={asset.ID.toString()}
+                title={asset.title}
+                desc={asset.desc}
               />
             </div>
           ))}
         </div>
       ) : (
         <p className="flex h-screen items-center justify-center text-xl">
-          No posts found
+          No assets found
         </p>
       )}
     </div>
   );
 };
 
-export default PostsPage;
+export default MyAssetsPage;
