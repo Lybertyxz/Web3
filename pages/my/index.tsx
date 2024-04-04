@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { apiService } from "../../../utils/api";
-import AssetCard from "../../../components/AssetCard";
-import { Asset } from "../../../utils/types";
+import { apiService } from "../../utils/api";
+import AssetCard from "../../components/AssetCard";
+import { Asset } from "../../utils/types";
 
 // const assetData: Asset[] = [
 //   {

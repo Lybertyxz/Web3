@@ -1,8 +1,11 @@
 import Link from "next/link";
 import { useState } from "react";
 import DiamondComponent from "../components/framer/DiamondShape";
+import { useRouter } from "next/router";
 
 const RegisterPage = () => {
+  const router = useRouter();
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,6 +18,7 @@ const RegisterPage = () => {
       return;
     }
     console.log("Tentative d'inscription avec", { name, email, password });
+    router.push("/marketplace");
   };
 
   return (

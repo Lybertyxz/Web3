@@ -1,14 +1,18 @@
 import Link from "next/link";
 import { useState } from "react";
 import DiamondComponent from "../components/framer/DiamondShape";
+import { useRouter } from "next/router";
 
 const LoginPage = () => {
+  const router = useRouter();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Tentative de connexion avec", { email, password });
+    router.push("/marketplace");
   };
 
   return (

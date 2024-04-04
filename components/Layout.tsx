@@ -10,7 +10,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const router = useRouter();
   const isAuthenticated = true; // Implement your authentication logic here
 
-  const publicPaths = ["/", "/login", "/register"];
+  const publicPaths = ["/", "/login", "/register", "/404"];
 
   const showNav = !publicPaths.includes(router.pathname);
 
