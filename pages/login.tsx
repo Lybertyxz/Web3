@@ -2,9 +2,11 @@ import Link from "next/link";
 import { useState } from "react";
 import DiamondComponent from "../components/framer/DiamondShape";
 import { useRouter } from "next/router";
+import { useAuth } from "../context/AuthContext";
 
 const LoginPage = () => {
   const router = useRouter();
+  const { login } = useAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,6 +14,7 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Tentative de connexion avec", { email, password });
+    login();
     router.push("/marketplace");
   };
 

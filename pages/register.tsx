@@ -2,9 +2,11 @@ import Link from "next/link";
 import { useState } from "react";
 import DiamondComponent from "../components/framer/DiamondShape";
 import { useRouter } from "next/router";
+import { useAuth } from "../context/AuthContext";
 
 const RegisterPage = () => {
   const router = useRouter();
+  const { login } = useAuth();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -18,6 +20,7 @@ const RegisterPage = () => {
       return;
     }
     console.log("Tentative d'inscription avec", { name, email, password });
+    login();
     router.push("/marketplace");
   };
 

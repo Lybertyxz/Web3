@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <div className="bg-black p-4 text-center text-white">
+    <div className="p-4 text-center">
       <p>© 2024 Web3Project. All Right Reserved.</p>
       <p>
         <a href="#" className="hover:underline">

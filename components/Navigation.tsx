@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { useNavBar } from "../context/NavBarContext";
+import { useAuth } from "../context/AuthContext";
 
 interface NavButtonProps {
   path: string;
@@ -16,14 +18,30 @@ const NavButton: React.FC<NavButtonProps> = ({ path, name }) => {
   );
 };
 
-const Navigation: React.FC = () => {
+const Navigation = () => {
+  const { isNavBarVisible } = useNavBar();
+  const { logout } = useAuth();
+
+  if (!isNavBarVisible) return null;
+
   return (
     <nav className="animate-bg-change m-4 flex flex-col justify-between rounded-md bg-gradient-to-r from-blue-500 to-purple-500 text-white">
       <div className="flex flex-col items-center p-7">
-        <NavButton path="/" name="Home" />
-        <NavButton path="/assets" name="Market Place" />
-        <NavButton path="/assets/my" name="My Assets" />
-        <NavButton path="/assets/create" name="New Asset" />
+        <NavButton path="/marketplace" name="Market Place" />
+        <NavButton path="/my" name="My Assets" />
+        <NavButton path="/my/create" name="New Asset" />
+      </div>
+      <div
+        className="duration-400 border-gray-white my-5
+      cursor-pointer self-center border-b pt-5 transition-all hover:scale-125 hover:text-gray-300"
+      >
+        <button
+          onClick={() => {
+            logout();
+          }}
+        >
+          Logout
+        </button>
       </div>
     </nav>
   );
