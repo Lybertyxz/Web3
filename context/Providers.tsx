@@ -1,6 +1,6 @@
 import React from "react";
 
-export const combineProviders = (...components) => {
+export const Providers = (...components) => {
   return components.reduce(
     (AccumulatedProviders, CurrentProvider) => {
       return ({ children }) => (

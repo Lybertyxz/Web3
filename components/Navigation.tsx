@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { useNavBar } from "../context/NavBarContext";
 import { useAuth } from "../context/AuthContext";
 
 interface NavButtonProps {
@@ -19,10 +18,7 @@ const NavButton: React.FC<NavButtonProps> = ({ path, name }) => {
 };
 
 const Navigation = () => {
-  const { isNavBarVisible } = useNavBar();
   const { logout } = useAuth();
-
-  if (!isNavBarVisible) return null;
 
   return (
     <nav className="animate-bg-change m-4 flex flex-col justify-between rounded-md bg-gradient-to-r from-blue-500 to-purple-500 text-white">

@@ -5,14 +5,13 @@ import Layout from "../components/Layout";
 import { AnimatePresence } from "framer-motion";
 import PageTransition from "../components/framer/PageTransition";
 import { AuthProvider } from "../context/AuthContext";
-import { NavBarProvider } from "../context/NavBarContext";
-import { combineProviders } from "../utils/providers";
+import { Providers } from "../context/Providers";
 
-const CombinedProvider = combineProviders(AuthProvider, NavBarProvider);
+const ProvidersLayout = Providers(AuthProvider);
 
 export default function MyApp({ Component, pageProps, router }: AppProps) {
   return (
-    <CombinedProvider>
+    <ProvidersLayout>
       <Layout>
         <AnimatePresence>
           <PageTransition key={router.route}>
@@ -20,6 +19,6 @@ export default function MyApp({ Component, pageProps, router }: AppProps) {
           </PageTransition>
         </AnimatePresence>
       </Layout>
-    </CombinedProvider>
+    </ProvidersLayout>
   );
 }
