@@ -11,19 +11,26 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const router = useRouter();
   const { isAuthenticated } = useAuth();
 
-  const publicPaths = ["/", "/login", "/register", "/404"];
+  const publicPaths = ["/", "/account/login", "/account/register", "/404"];
 
   const showNav = !publicPaths.includes(router.pathname);
 
   useEffect(() => {
     if (!publicPaths.includes(router.pathname) && !isAuthenticated) {
-      router.push("/login");
+      router.push("/account/login");
     }
   }, [router.pathname, isAuthenticated]);
 
+  if (showNav)
+    return (
+      <div className="flex h-screen">
+        <Navigation />
+        <div className="m-4 flex-1">{children}</div>
+      </div>
+    );
+
   return (
     <div className="flex h-screen">
-      {showNav && <Navigation />}
       <div className="flex-1">{children}</div>
     </div>
   );

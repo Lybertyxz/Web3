@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { useAuth } from "../context/AuthContext";
+import CircleButton from "./CirclePicture";
+import CirclePicture from "./CirclePicture";
 
 interface NavButtonProps {
   path: string;
@@ -23,6 +25,9 @@ const Navigation = () => {
   return (
     <nav className="animate-bg-change m-4 flex flex-col justify-between rounded-md bg-gradient-to-r from-blue-500 to-purple-500 text-white">
       <div className="flex flex-col items-center p-7">
+        <div className="pb-10">
+          <CirclePicture imageUrl="" url="/account/profile" username="" />
+        </div>
         <NavButton path="/marketplace" name="Market Place" />
         <NavButton path="/my" name="My Assets" />
         <NavButton path="/my/create" name="New Asset" />

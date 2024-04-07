@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { useState } from "react";
-import DiamondComponent from "../components/framer/DiamondShape";
+import DiamondComponent from "../../components/framer/DiamondShape";
 import { useRouter } from "next/router";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 
 const LoginPage = () => {
   const router = useRouter();

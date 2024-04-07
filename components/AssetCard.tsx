@@ -1,22 +1,48 @@
+import React from "react";
+import { motion } from "framer-motion";
+import Link from "next/link";
+
 interface AssetCardProps {
-  id: string;
+  from: "marketplace" | "my";
+  id: number;
+  image: string;
   title: string;
-  desc: string;
+  priceUSD: number;
+  priceCrypto: number;
 }
 
-const AssetCard: React.FC<AssetCardProps> = ({ id, title, desc }) => {
+const AssetCard: React.FC<AssetCardProps> = ({
+  from,
+  id,
+  image,
+  title,
+  priceUSD,
+  priceCrypto,
+}) => {
   return (
-    <div>
-      <a
-        href={"/assets/" + id}
-        className="block max-w-sm rounded-lg border border-gray-200 bg-white p-6 shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
-      >
-        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-          {title}
-        </h5>
-        <p className="font-normal text-gray-700 dark:text-gray-400">{desc}</p>
-      </a>
-    </div>
+    <Link href={`/${from}/` + id.toString()}>
+      <div className="w-64 overflow-hidden rounded-md bg-neutral-800 shadow-md transition-transform hover:scale-105">
+        <motion.div
+          className="relative h-40 overflow-hidden"
+          whileHover={{ scale: 1.1 }}
+        >
+          <img src={image} alt={title} className="h-full w-full object-cover" />
+        </motion.div>
+        <div className="p-4">
+          <h3 className="mb-2 text-lg font-semibold">{title}</h3>
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-indigo-500">
+                {priceCrypto.toLocaleString()} ETH
+              </p>
+              <p className="text-purple-500">
+                Equivalent: {priceUSD.toLocaleString()} $
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Link>
   );
 };
 
