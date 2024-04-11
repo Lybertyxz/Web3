@@ -15,8 +15,8 @@
 
 .diamond-container {
   position: relative;
-  width: calc(100vw / 4); /* Exemple de largeur basée sur la largeur de l'écran */
-  padding-top: calc(100vw / 4); /* Garde la forme carrée qui sera tournée pour faire un losange */
+  width: calc(100vw / 4);
+  padding-top: calc(100vw / 4);
 }
 
 .diamond-shape {

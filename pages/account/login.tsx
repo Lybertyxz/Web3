@@ -3,6 +3,7 @@ import { useState } from "react";
 import DiamondComponent from "../../components/framer/DiamondShape";
 import { useRouter } from "next/router";
 import { useAuth } from "../../context/AuthContext";
+import { apiService } from "../../utils/api";
 
 const LoginPage = () => {
   const router = useRouter();
@@ -14,8 +15,21 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Tentative de connexion avec", { email, password });
-    login();
+
+    login("", "");
     router.push("/marketplace");
+
+    try {
+      const response = await apiService.auth.login(email, password);
+      if (response.token && response.userId) {
+        login(response.token, response.userId);
+        router.push("/marketplace");
+      } else {
+        console.error("Login failed", response.message);
+      }
+    } catch (error) {
+      console.error("Login error", error);
+    }
   };
 
   return (
@@ -58,7 +72,7 @@ const LoginPage = () => {
             </button>
             <Link
               className="text-sm text-blue-400 hover:text-blue-300"
-              href="/register"
+              href="/account/register"
             >
               Create account
             </Link>

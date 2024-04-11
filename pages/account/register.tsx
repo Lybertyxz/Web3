@@ -3,6 +3,7 @@ import { useState } from "react";
 import DiamondComponent from "../../components/framer/DiamondShape";
 import { useRouter } from "next/router";
 import { useAuth } from "../../context/AuthContext";
+import { apiService } from "../../utils/api";
 
 const RegisterPage = () => {
   const router = useRouter();
@@ -16,12 +17,21 @@ const RegisterPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      console.error("Les mots de passe ne correspondent pas.");
+      console.error("Passwords do not match.");
       return;
     }
-    console.log("Tentative d'inscription avec", { name, email, password });
-    login();
-    router.push("/marketplace");
+
+    try {
+      const response = await apiService.auth.register(name, email, password);
+      if (response.token && response.userId) {
+        login(response.token, response.userId);
+        router.push("/marketplace");
+      } else {
+        console.error("Registration failed", response.message);
+      }
+    } catch (error) {
+      console.error("Registration error", error);
+    }
   };
 
   return (
@@ -93,7 +103,7 @@ const RegisterPage = () => {
             </button>
             <Link
               className="text-sm text-blue-400 hover:text-blue-300"
-              href="/login"
+              href="/account/login"
             >
               Sign In.
             </Link>

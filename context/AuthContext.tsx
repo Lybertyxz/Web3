@@ -1,8 +1,17 @@
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useEffect,
+} from "react";
+import { apiService } from "../utils/api";
 
 interface AuthContextType {
   isAuthenticated: boolean;
-  login: () => void;
+  userId: string | null;
+  token: string | null;
+  login: (email: string, password: string) => Promise<void>;
   logout: () => void;
 }
 
@@ -19,12 +28,39 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [token, setToken] = useState<string | null>(null);
+  const [userId, setUserId] = useState<string | null>(null);
 
-  const login = () => setIsAuthenticated(true);
-  const logout = () => setIsAuthenticated(false);
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    const storedUserId = localStorage.getItem("userId");
+    if (storedToken && storedUserId) {
+      setIsAuthenticated(true);
+      setToken(storedToken);
+      setUserId(storedUserId);
+    }
+  }, []);
+
+  const login = async (token, userId) => {
+    localStorage.setItem("token", token);
+    localStorage.setItem("userId", userId);
+    setIsAuthenticated(true);
+    setToken(token);
+    setUserId(userId);
+  };
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userId");
+    setIsAuthenticated(false);
+    setToken(null);
+    setUserId(null);
+  };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthContext.Provider
+      value={{ isAuthenticated, userId, token, login, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );
