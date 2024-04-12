@@ -25,7 +25,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     return (
       <div className="flex h-screen">
         <Navigation />
-        <div className="m-4 flex-1">{children}</div>
+        <div>{children}</div>
       </div>
     );
 

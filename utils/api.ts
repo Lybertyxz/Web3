@@ -35,6 +35,8 @@ export const apiService = {
         },
         body: JSON.stringify(asset),
       }),
+    buyAsset: (id: string) => fetchAPI(`/assets/buy/${id}`),
+    sellAsset: (id: string) => fetchAPI(`/assets/sell/${id}`),
   },
   account: {}, // "/account", "account/udpate", "/account/delete", "/account/settings"
   auth: {
