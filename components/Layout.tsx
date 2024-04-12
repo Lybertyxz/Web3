@@ -49,11 +49,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     return (
       <div className="flex h-screen">
         <Navigation />
+        {children}
         <WalletInfo
           balance={profile.walletBalance}
           address={profile.walletAddress}
         />
-        {children}
       </div>
     );
 
