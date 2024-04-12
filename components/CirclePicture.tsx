@@ -12,8 +12,8 @@ const CirclePicture: React.FC<CircleButtonProps> = ({
   url,
   username,
 }) => {
-  if (imageUrl == "") imageUrl = "pp.jpg";
-  if (username == "") username = "John Doe";
+  if (imageUrl == "" || imageUrl == undefined) imageUrl = "/pp.jpg";
+  if (username == "" || imageUrl == undefined) username = "John Doe";
 
   return (
     <Link className="inline-block" href={url}>

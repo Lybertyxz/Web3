@@ -1,23 +1,28 @@
-import { Asset } from "./types";
-
 const BASE_URL = "http://localhost:8080";
 
-async function fetchAPI(path: string, options?: RequestInit) {
+async function fetchAPI(
+  path: string,
+  options?: RequestInit,
+  json: boolean = true
+) {
   const token = localStorage.getItem("token");
-  const headers = {
-    "Content-Type": "application/json",
-    ...options?.headers,
-  };
 
-  if (token) {
-    headers["Authorization"] = `Bearer ${token}`;
+  const headers = new Headers(options?.headers);
+
+  if (json && !(options?.body instanceof FormData)) {
+    headers.set("Content-Type", "application/json");
   }
 
-  const res = await fetch(`${BASE_URL}${path}`, {
+  if (token) {
+    headers.set("Authorization", `Bearer ${token}`);
+  }
+
+  const response = await fetch(`${BASE_URL}${path}`, {
     ...options,
     headers,
   });
-  const data = await res.json();
+
+  const data = await response.json();
   return data;
 }
 
@@ -27,33 +32,35 @@ export const apiService = {
     getAsset: (id: string) => fetchAPI(`/assets/${id}`),
     getMyAssets: () => fetchAPI(`/assets/my`),
     getMyAsset: (id: string) => fetchAPI(`/assets/my/${id}`),
-    createAsset: (asset: Asset) =>
-      fetchAPI("/assets", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+    createAsset: (asset: FormData) =>
+      fetchAPI(
+        "/assets",
+        {
+          method: "POST",
+          body: asset,
         },
-        body: JSON.stringify(asset),
-      }),
+        false
+      ),
     buyAsset: (id: string) => fetchAPI(`/assets/buy/${id}`),
     sellAsset: (id: string) => fetchAPI(`/assets/sell/${id}`),
   },
-  account: {}, // "/account", "account/udpate", "/account/delete", "/account/settings"
+  account: {
+    getProfile: () => fetchAPI(`/account`),
+    updateProfile: (username: string, email: string, description: string) =>
+      fetchAPI(`/account`, {
+        method: "POST",
+        body: JSON.stringify({ username, email, description }),
+      }),
+  },
   auth: {
     login: (email: string, password: string) =>
       fetchAPI("/login", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
         body: JSON.stringify({ email, password }),
       }),
     register: (name: string, email: string, password: string) =>
       fetchAPI("/register", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
         body: JSON.stringify({ name, email, password }),
       }),
   },

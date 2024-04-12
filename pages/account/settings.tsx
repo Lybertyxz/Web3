@@ -1,5 +1,5 @@
 function SettingsPage() {
-  return <div>aze</div>;
+  return <div></div>;
 }
 
 export default SettingsPage;

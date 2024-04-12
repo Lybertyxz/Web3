@@ -5,7 +5,6 @@ import React, {
   ReactNode,
   useEffect,
 } from "react";
-import { apiService } from "../utils/api";
 
 interface AuthContextType {
   isAuthenticated: boolean;

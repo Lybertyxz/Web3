@@ -1,7 +1,10 @@
 import { useRouter } from "next/router";
-import { useEffect, ReactNode } from "react";
+import { useEffect, ReactNode, useState } from "react";
 import Navigation from "./Navigation";
 import { useAuth } from "../context/AuthContext";
+import WalletInfo from "./WalletInfo";
+import { apiService } from "../utils/api";
+import { User } from "../utils/types";
 
 interface LayoutProps {
   children: ReactNode;
@@ -21,11 +24,36 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     }
   }, [router.pathname, isAuthenticated]);
 
+  const [profile, setProfile] = useState<User>({
+    username: "",
+    description: "",
+    email: "",
+    walletBalance: 0,
+    walletAddress: "",
+  });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const fetchedAsset = await apiService.account.getProfile();
+        setProfile(fetchedAsset);
+      } catch (error) {
+        console.error("Error fetching assets:", error.message);
+      }
+
+      fetchData();
+    };
+  }, [profile]);
+
   if (showNav)
     return (
       <div className="flex h-screen">
         <Navigation />
-        <div>{children}</div>
+        <WalletInfo
+          balance={profile.walletBalance}
+          address={profile.walletAddress}
+        />
+        {children}
       </div>
     );
 

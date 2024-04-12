@@ -7,7 +7,7 @@ import PurchaseCard from "../../components/PurchaseCard";
 import Carousel from "../../components/Carousel";
 
 const AssetTest: Asset = {
-  pictures: ["/asset1.jpg", "/asset2.jpg"],
+  pictures_url: ["/asset1.jpg", "/asset2.jpg"],
   title: "Titre de l'asset",
   desc: "Description ici",
   city: "Ville ici",
@@ -45,8 +45,8 @@ function AssetPage() {
 
   return (
     <div className="flex h-full">
-      <div className="flex w-1/2 flex-col gap-4 overflow-auto">
-        <Carousel pictures={asset.pictures} />
+      <div className="flex w-1/2 flex-col gap-4">
+        <Carousel pictures={asset.pictures_url} />
         <InfoCard
           title={asset.title}
           description={asset.desc}

@@ -7,7 +7,7 @@ const MyAssets: Asset[] = [
   {
     id: 1,
     title: "Asset 1",
-    pictures: ["/asset1.jpg"],
+    pictures_url: ["/asset1.jpg"],
     desc: "",
     priceUSD: 150650,
     priceCurrency: 15.5656,
@@ -15,7 +15,7 @@ const MyAssets: Asset[] = [
   {
     id: 2,
     title: "Asset 2",
-    pictures: ["/asset2.jpg"],
+    pictures_url: ["/asset2.jpg"],
     desc: "",
     priceUSD: 365214,
     priceCurrency: 24.11548,
@@ -48,7 +48,7 @@ const MyAssetsPage = () => {
               from="my"
               key={index}
               id={asset.id}
-              image={asset.pictures[0]}
+              image={asset.pictures_url[0]}
               title={asset.title}
               priceUSD={asset.priceUSD}
               priceCrypto={asset.priceCurrency}
