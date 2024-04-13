@@ -16,8 +16,8 @@ const LoginPage = () => {
     e.preventDefault();
     console.log("Tentative de connexion avec", { email, password });
 
-    login("", "");
-    router.push("/marketplace");
+   /* login(email, password);*/
+/*    router.push("/marketplace");*/
 
     try {
       const response = await apiService.auth.login(email, password);

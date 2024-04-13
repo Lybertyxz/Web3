@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:8080";
+const BASE_URL = "http://localhost:8000";
 
 async function fetchAPI(
   path: string,
@@ -58,10 +58,10 @@ export const apiService = {
         method: "POST",
         body: JSON.stringify({ email, password }),
       }),
-    register: (name: string, email: string, password: string) =>
-      fetchAPI("/register", {
+      register: (email: string, password: string, username: string) =>
+          fetchAPI("/register/", {
         method: "POST",
-        body: JSON.stringify({ name, email, password }),
-      }),
+            body: JSON.stringify({ email, password, username }),
+          }),
   },
 };

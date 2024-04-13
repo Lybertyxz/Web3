@@ -9,7 +9,7 @@ const RegisterPage = () => {
   const router = useRouter();
   const { login } = useAuth();
 
-  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -22,7 +22,7 @@ const RegisterPage = () => {
     }
 
     try {
-      const response = await apiService.auth.register(name, email, password);
+      const response = await apiService.auth.register(email, password, username);
       if (response.token && response.userId) {
         login(response.token, response.userId);
         router.push("/marketplace");
@@ -40,14 +40,14 @@ const RegisterPage = () => {
         <h2 className="mb-6 text-center text-2xl font-semibold">Sign Up.</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-2">
-            <label htmlFor="name" className="block text-sm font-medium ">
+            <label htmlFor="username" className="block text-sm font-medium ">
               Name
             </label>
             <input
-              type="name"
-              id="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              type="username"
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               className="mt-1 w-full rounded-md border-transparent bg-gray-700 p-2 text-white placeholder-gray-400 shadow-sm focus:border-blue-500 focus:ring-blue-500"
               required
             />
