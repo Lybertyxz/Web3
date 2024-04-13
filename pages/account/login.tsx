@@ -16,13 +16,13 @@ const LoginPage = () => {
     e.preventDefault();
     console.log("Tentative de connexion avec", { email, password });
 
-   /* login(email, password);*/
-/*    router.push("/marketplace");*/
+    login("", "");
+    router.push("/marketplace");
 
     try {
       const response = await apiService.auth.login(email, password);
-      if (response.token) {
-        await login(response.token);
+      if (response.token && response.userId) {
+        login(response.token, response.userId);
         router.push("/marketplace");
       } else {
         console.error("Login failed", response.message);

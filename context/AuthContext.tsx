@@ -10,8 +10,7 @@ interface AuthContextType {
   isAuthenticated: boolean;
   userId: string | null;
   token: string | null;
-  register: (userId: string) => void;
-  login: (token: string) => Promise<void>;
+  login: (email: string, password: string) => Promise<void>;
   logout: () => void;
 }
 
@@ -41,16 +40,12 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
     }
   }, []);
 
-  const register = async (userId: string) => {
-    localStorage.setItem("userId", userId);
-    setIsAuthenticated(false);
-    setUserId(userId);
-  };
-
-  const login = async (token: string) => {
+  const login = async (token, userId) => {
     localStorage.setItem("token", token);
+    localStorage.setItem("userId", userId);
     setIsAuthenticated(true);
     setToken(token);
+    setUserId(userId);
   };
 
   const logout = () => {
@@ -63,7 +58,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
 
   return (
     <AuthContext.Provider
-      value={{ isAuthenticated, userId, token, register, login, logout }}
+      value={{ isAuthenticated, userId, token, login, logout }}
     >
       {children}
     </AuthContext.Provider>
