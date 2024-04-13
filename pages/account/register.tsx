@@ -7,7 +7,7 @@ import { apiService } from "../../utils/api";
 
 const RegisterPage = () => {
   const router = useRouter();
-  const { login } = useAuth();
+  const { register } = useAuth();
 
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -23,8 +23,8 @@ const RegisterPage = () => {
 
     try {
       const response = await apiService.auth.register(email, password, username);
-      if (response.token && response.userId) {
-        login(response.token, response.userId);
+      if (response.id) {
+        register(response.id)
         router.push("/marketplace");
       } else {
         console.error("Registration failed", response.message);

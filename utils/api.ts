@@ -28,13 +28,13 @@ async function fetchAPI(
 
 export const apiService = {
   assets: {
-    getAssets: () => fetchAPI("/assets"),
+    getAssets: () => fetchAPI("/assets/"),
     getAsset: (id: string) => fetchAPI(`/assets/${id}`),
     getMyAssets: () => fetchAPI(`/assets/my`),
     getMyAsset: (id: string) => fetchAPI(`/assets/my/${id}`),
     createAsset: (asset: FormData) =>
       fetchAPI(
-        "/assets",
+        "/assets/",
         {
           method: "POST",
           body: asset,
@@ -47,14 +47,14 @@ export const apiService = {
   account: {
     getProfile: () => fetchAPI(`/account`),
     updateProfile: (username: string, email: string, description: string) =>
-      fetchAPI(`/account`, {
+      fetchAPI(`/account/`, {
         method: "POST",
         body: JSON.stringify({ username, email, description }),
       }),
   },
   auth: {
     login: (email: string, password: string) =>
-      fetchAPI("/login", {
+      fetchAPI("/login/", {
         method: "POST",
         body: JSON.stringify({ email, password }),
       }),
